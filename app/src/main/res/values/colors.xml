@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_blue">#81D4FA</color>
+    <color name="light_blue_alert_dialog">#E481D4FA</color>
     <color name="blue">#6629B6F6</color>
 </resources>

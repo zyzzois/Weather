@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.octaneocatane.weather.presentation.ViewPager2Adapter
 import com.octaneocatane.weather.databinding.FragmentMainBinding
@@ -69,11 +70,13 @@ class MainFragment : Fragment() {
         if (isLocationEnabled()) {
             getLocation()
         } else {
+
             DialogManager.locationSettingsDialog(requireContext(), object : DialogManager.Listener {
                 override fun onClick(name: String?) {
                     startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                 }
             })
+
         }
     }
 
@@ -81,9 +84,11 @@ class MainFragment : Fragment() {
         val lm = activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val locationEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
         if (!locationEnabled) {
-            Toast.makeText(requireContext(), "Location disabled!", Toast.LENGTH_LONG).show()
+            //Toast.makeText(requireContext(), "Location disabled!", Toast.LENGTH_LONG).show()
             return false
         } else {
+            Snackbar.make(binding.root, "Loading data...", Snackbar.LENGTH_LONG)
+                .show()
             return true
         }
     }
@@ -105,7 +110,6 @@ class MainFragment : Fragment() {
             .addOnCompleteListener {
                 val coordinates = "${it.result.latitude},${it.result.longitude}"
                 viewModel.loadData(coordinates)
-                Log.d("TAG", "${it.result.latitude},${it.result.longitude}")
             }
     }
 
@@ -146,7 +150,7 @@ class MainFragment : Fragment() {
             tvCurrentTemp.text = it.currentTemp
             tvCurrentCondition.text = it.conditionText
             tvLastUpdated.text = it.time
-            val tempText = "${it.maxTemp} °C | ${it.minTemp} °C"
+            val tempText = "${it.maxTemp} - max | min - ${it.minTemp}"
             tvMaxMinTemp.text = tempText
             Picasso.get().load("https:" + it.conditionIcon).into(imWeather)
         }
@@ -154,6 +158,7 @@ class MainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
         checkLocation()
     }
 
