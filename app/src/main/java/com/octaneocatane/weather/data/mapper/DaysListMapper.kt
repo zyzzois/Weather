@@ -18,17 +18,17 @@ class DaysListMapper {
         time = day.date,
         conditionText = day.day.condition.conditionText,
         conditionIcon = day.day.condition.conditionIcon,
-        maxTemp = day.day.maxTemp.toString(),
-        minTemp = day.day.minTemp.toString(),
-        temp = day.day.averageTemp.toString()
+        maxTemp = day.day.maxTemp.toInt(),
+        minTemp = day.day.minTemp.toInt(),
+        temp = day.day.averageTemp.toInt()
     )
     fun mapDaysModelDbToEntity(dayItem: DayItemModelDb) = WeatherEntity(
         city = Constants.UNDEFINED_CITY,
         time = dayItem.time,
         conditionText = dayItem.conditionText,
         currentTemp = Constants.UNDEFINED_CURRENT_TEMP,
-        maxTemp = dayItem.maxTemp,
-        minTemp = dayItem.minTemp,
+        maxTemp = dayItem.maxTemp.toString() + "°",
+        minTemp = dayItem.minTemp.toString() + "°",
         conditionIcon = dayItem.conditionIcon
     )
     fun mapDaysModelDbListToEntityList(modelDbList: List<DayItemModelDb>): List<WeatherEntity>{

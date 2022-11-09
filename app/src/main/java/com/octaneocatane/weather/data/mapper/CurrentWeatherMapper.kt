@@ -11,17 +11,17 @@ class CurrentWeatherMapper {
         city = weatherInfoDto.location.city,
         conditionText = weatherInfoDto.current.condition.conditionText,
         conditionIcon = weatherInfoDto.current.condition.conditionIcon,
-        currentTemp = weatherInfoDto.current.tempC.toString(),
-        maxTemp = weatherInfoDto.forecast.forecastForDaysList[0].day.maxTemp.toString(),
-        minTemp = weatherInfoDto.forecast.forecastForDaysList[0].day.minTemp.toString()
+        currentTemp = weatherInfoDto.current.tempC.toInt(),
+        maxTemp = weatherInfoDto.forecast.forecastForDaysList[0].day.maxTemp.toInt(),
+        minTemp = weatherInfoDto.forecast.forecastForDaysList[0].day.minTemp.toInt()
     )
 
     fun mapCurrentDbModelToEntity(currentDbModel: CurrentModelDB) = WeatherEntity(
         time = currentDbModel.time,
         conditionText = currentDbModel.conditionText,
-        currentTemp = currentDbModel.currentTemp,
-        maxTemp = currentDbModel.maxTemp,
-        minTemp = currentDbModel.minTemp,
+        currentTemp = currentDbModel.currentTemp.toString() + "°",
+        maxTemp = currentDbModel.maxTemp.toString() + "°",
+        minTemp = currentDbModel.minTemp.toString() + "°",
         conditionIcon = currentDbModel.conditionIcon,
         city = currentDbModel.city
     )
