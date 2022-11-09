@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Weather</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="time_default_text">10/11/2022 21:00</string>
+    <string name="city_default_text">Ufa</string>
+    <string name="temp_default_text">27°C</string>
+    <string name="condition_default_text">Sunny</string>
+    <string name="max_min_default_text">32°C | 17°C</string>
+    <string name="button_type_city">type your city</string>
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
