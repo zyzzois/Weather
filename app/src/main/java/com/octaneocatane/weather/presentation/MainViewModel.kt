@@ -33,10 +33,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val daysList: LiveData<List<WeatherEntity>>
         get() = _daysList
 
-
-    fun loadData() {
+    fun loadData(city: String) {
         viewModelScope.launch {
-            loadDataUseCase()
+            loadDataUseCase(city)
             _currentWeather.value = getCurrentWeatherListUseCase.invoke()
             _daysList.value = getDaysListUseCase.invoke()
             _hoursList.value = getHoursListUseCase.invoke()

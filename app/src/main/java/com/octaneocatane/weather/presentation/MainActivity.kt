@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_splash)
-        viewModel.loadData()
+        viewModel.loadData("London")
         CoroutineScope(Dispatchers.Main).launch {
             delay(5000)
             setContentView(binding.root)
