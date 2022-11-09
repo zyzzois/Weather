@@ -7,12 +7,12 @@ import androidx.room.PrimaryKey
 data class DayItemModelDb (
     @PrimaryKey
     val id: Int,
-    val minTemp: String,
+    val minTemp: Int,
     val city: String,
     val time: String,
     val conditionText: String,
     val conditionIcon: String,
-    val maxTemp: String,
-    val temp: String,
+    val maxTemp: Int,
+    val temp: Int,
 
 )

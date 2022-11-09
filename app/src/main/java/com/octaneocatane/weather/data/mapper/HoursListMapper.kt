@@ -18,14 +18,14 @@ class HoursListMapper {
         time = hour.time,
         conditionText = hour.condition.conditionText,
         conditionIcon = hour.condition.conditionIcon,
-        temp = hour.tempC.toString()
+        temp = hour.tempC.toInt()
     )
 
     fun mapHoursModelDbToEntity(hourItem: HourItemModelDB) = WeatherEntity(
         city = Constants.UNDEFINED_CITY,
         time = hourItem.time,
         conditionText = hourItem.conditionText,
-        currentTemp = hourItem.temp,
+        currentTemp = hourItem.temp.toString() + "°",
         maxTemp = Constants.UNDEFINED_MAX_TEMP,
         minTemp = Constants.UNDEFINED_MIN_TEMP,
         conditionIcon = hourItem.conditionIcon

@@ -10,7 +10,7 @@ data class CurrentModelDB(
     val city: String,
     val conditionText: String,
     val conditionIcon: String,
-    val currentTemp: String,
-    val maxTemp: String,
-    val minTemp: String
+    val currentTemp: Int,
+    val maxTemp: Int,
+    val minTemp: Int
 )
