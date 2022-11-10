@@ -150,15 +150,13 @@ class MainFragment : Fragment() {
             tvCurrentTemp.text = it.currentTemp
             tvCurrentCondition.text = it.conditionText
             tvLastUpdated.text = it.time
-            val tempText = "${it.maxTemp} - max | min - ${it.minTemp}"
-            tvMaxMinTemp.text = tempText
+            tvMaxMinTemp.text = "${it.maxTemp} - max | min - ${it.minTemp}"
             Picasso.get().load("https:" + it.conditionIcon).into(imWeather)
         }
     }
 
     override fun onResume() {
         super.onResume()
-
         checkLocation()
     }
 
