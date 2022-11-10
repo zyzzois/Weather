@@ -91,4 +91,7 @@ dependencies {
 
     // Material
     implementation 'com.google.android.material:material:<version>'
+
+    // Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 }
