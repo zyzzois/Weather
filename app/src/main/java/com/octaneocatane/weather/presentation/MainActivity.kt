@@ -16,9 +16,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    private val component by lazy {
-        (application as WeatherApplication).component
-    }
 
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -28,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_splash)
         CoroutineScope(Dispatchers.Main).launch {
-            delay(1000)
+            delay(2000)
             setContentView(binding.root)
             supportFragmentManager
                 .beginTransaction().replace(R.id.placeHolder, MainFragment.newInstance())

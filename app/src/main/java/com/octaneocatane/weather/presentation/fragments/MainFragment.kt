@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
+import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -31,6 +32,10 @@ import com.octaneocatane.weather.presentation.MainViewModel
 import com.octaneocatane.weather.presentation.ViewModelFactory
 import com.octaneocatane.weather.utils.isPermissionGranted
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
@@ -53,7 +58,7 @@ class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding
-        get() = _binding ?: throw RuntimeException("FragmentMainBinding = null")
+        get() = _binding ?: throw RuntimeException(BINDING_EXCEPTION_MESSAGE)
 
     private val viewPagerAdapter by lazy {
         ViewPager2Adapter(activity as AppCompatActivity, fragmentList)
@@ -72,6 +77,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+        startShimmer()
         return binding.root
     }
 
@@ -86,13 +92,11 @@ class MainFragment : Fragment() {
         if (isLocationEnabled()) {
             getLocation()
         } else {
-
             DialogManager.locationSettingsDialog(requireContext(), object : DialogManager.Listener {
                 override fun onClick(name: String?) {
                     startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                 }
             })
-
         }
     }
 
@@ -103,8 +107,8 @@ class MainFragment : Fragment() {
             //Toast.makeText(requireContext(), "Location disabled!", Toast.LENGTH_LONG).show()
             return false
         } else {
-            Snackbar.make(binding.root, "Loading data...", Snackbar.LENGTH_LONG)
-                .show()
+            /*Snackbar.make(binding.root, "Loading data...", Snackbar.LENGTH_LONG)
+                .show()*/
             return true
         }
     }
@@ -141,17 +145,16 @@ class MainFragment : Fragment() {
 
     private fun init() = with(binding) {
         viewPager2.adapter = viewPagerAdapter
-
         TabLayoutMediator(tabLayout, viewPager2) { tab, pos ->
             tab.text = tabList[pos]
         }.attach()
-
         buttonSyncLocation.setOnClickListener {
             tabLayout.selectTab(tabLayout.getTabAt(0))
+            startShimmer()
             checkLocation()
+            stopShimmer()
         }
-
-        binding.buttonTypeCity.setOnClickListener {
+        buttonTypeCity.setOnClickListener {
             DialogManager.searchByNameDialog(requireContext(), object : DialogManager.Listener {
                 override fun onClick(name: String?) {
                     name?.let { viewModel.loadData(it) }
@@ -168,6 +171,26 @@ class MainFragment : Fragment() {
             tvLastUpdated.text = it.time
             tvMaxMinTemp.text = "${it.maxTemp} - max | min - ${it.minTemp}"
             Picasso.get().load("https:" + it.conditionIcon).into(imWeather)
+            stopShimmer()
+        }
+    }
+
+    private fun startShimmer() {
+        with(binding) {
+            viewPager2.visibility = View.INVISIBLE
+            cardView.visibility = View.INVISIBLE
+            shimmer.startShimmerAnimation()
+            shimmerCard.startShimmerAnimation()
+        }
+    }
+    private fun stopShimmer() {
+        with(binding) {
+            shimmer.stopShimmerAnimation()
+            shimmerCard.stopShimmerAnimation()
+            shimmer.visibility = View.GONE
+            shimmerCard.visibility = View.INVISIBLE
+            viewPager2.visibility = View.VISIBLE
+            cardView.visibility = View.VISIBLE
         }
     }
 
@@ -184,6 +207,7 @@ class MainFragment : Fragment() {
     companion object {
         private const val HOURS = "hours"
         private const val DAYS = "days"
+        private const val BINDING_EXCEPTION_MESSAGE = "FragmentMainBinding = null"
         @JvmStatic
         fun newInstance() = MainFragment()
     }
