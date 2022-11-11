@@ -3,8 +3,9 @@ package com.octaneocatane.weather.data.mapper
 import com.octaneocatane.weather.data.database.modelsDB.CurrentModelDB
 import com.octaneocatane.weather.data.network.models.WeatherInfoDto
 import com.octaneocatane.weather.domain.WeatherEntity
+import javax.inject.Inject
 
-class CurrentWeatherMapper {
+class CurrentWeatherMapper @Inject constructor(){
 
     fun mapDtoToCurrentDbModel(weatherInfoDto: WeatherInfoDto) = CurrentModelDB(
         time = weatherInfoDto.current.lastUpdated,

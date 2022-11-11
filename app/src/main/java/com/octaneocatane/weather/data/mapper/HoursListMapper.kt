@@ -5,8 +5,9 @@ import com.octaneocatane.weather.data.network.models.HourDto
 import com.octaneocatane.weather.data.network.models.WeatherInfoDto
 import com.octaneocatane.weather.domain.WeatherEntity
 import com.octaneocatane.weather.utils.Constants
+import javax.inject.Inject
 
-class HoursListMapper {
+class HoursListMapper @Inject constructor(){
 
     fun mapDtoToHoursListModelDb(weatherInfoDto: WeatherInfoDto) =
         weatherInfoDto.forecast.forecastForDaysList[0].forecastForHoursList.map {

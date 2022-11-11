@@ -23,14 +23,29 @@ import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
+import com.octaneocatane.weather.WeatherApplication
 import com.octaneocatane.weather.presentation.ViewPager2Adapter
 import com.octaneocatane.weather.databinding.FragmentMainBinding
 import com.octaneocatane.weather.presentation.DialogManager
 import com.octaneocatane.weather.presentation.MainViewModel
+import com.octaneocatane.weather.presentation.ViewModelFactory
 import com.octaneocatane.weather.utils.isPermissionGranted
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 class MainFragment : Fragment() {
+
+    private val component by lazy {
+        (requireActivity().application as WeatherApplication).component
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel by lazy {
+        ViewModelProvider(requireActivity(), viewModelFactory)[MainViewModel::class.java]
+    }
+
     private val fLocationClient by lazy {
         LocationServices.getFusedLocationProviderClient(requireContext())
     }
@@ -40,16 +55,17 @@ class MainFragment : Fragment() {
     private val binding: FragmentMainBinding
         get() = _binding ?: throw RuntimeException("FragmentMainBinding = null")
 
-    private val viewModel by lazy {
-        ViewModelProvider(requireActivity())[MainViewModel::class.java]
-    }
-
     private val viewPagerAdapter by lazy {
         ViewPager2Adapter(activity as AppCompatActivity, fragmentList)
     }
 
     private val fragmentList = listOf(HoursFragment.newInstance(), DaysFragment.newInstance())
     private val tabList = listOf(HOURS, DAYS)
+
+    override fun onAttach(context: Context) {
+        component.inject(this@MainFragment)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

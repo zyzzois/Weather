@@ -1,5 +1,6 @@
 package com.octaneocatane.weather.presentation.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,19 +9,35 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.octaneocatane.weather.R
+import com.octaneocatane.weather.WeatherApplication
 import com.octaneocatane.weather.databinding.FragmentHoursBinding
 import com.octaneocatane.weather.presentation.MainViewModel
+import com.octaneocatane.weather.presentation.ViewModelFactory
 import com.octaneocatane.weather.presentation.recyclerview.WeatherAdapter
+import javax.inject.Inject
 
 class HoursFragment : Fragment() {
+
+    private val component by lazy {
+        (requireActivity().application as WeatherApplication).component
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel by lazy {
+        ViewModelProvider(requireActivity(), viewModelFactory)[MainViewModel::class.java]
+    }
+
     private var _binding: FragmentHoursBinding? = null
     private val binding: FragmentHoursBinding
         get() = _binding ?: throw RuntimeException("FragmentHoursBinding = null")
 
     private lateinit var weatherAdapter: WeatherAdapter
 
-    private val viewModel by lazy {
-        ViewModelProvider(requireActivity())[MainViewModel::class.java]
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreateView(
