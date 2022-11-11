@@ -1,4 +1,4 @@
-package com.octaneocatane.weather.presentation
+package com.octaneocatane.weather.utils
 
 import android.content.pm.PackageManager
 import android.widget.Toast

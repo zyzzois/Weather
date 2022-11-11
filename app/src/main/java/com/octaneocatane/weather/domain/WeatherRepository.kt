@@ -2,7 +2,7 @@ package com.octaneocatane.weather.domain
 
 interface WeatherRepository {
 
-    suspend fun loadData()
+    suspend fun loadData(city: String)
 
     suspend fun getHoursWeatherList(): List<WeatherEntity>
 

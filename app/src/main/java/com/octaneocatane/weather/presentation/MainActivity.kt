@@ -2,7 +2,9 @@ package com.octaneocatane.weather.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.location.LocationServices
 import com.octaneocatane.weather.R
 import com.octaneocatane.weather.databinding.ActivityMainBinding
 import com.octaneocatane.weather.presentation.fragments.MainFragment
@@ -17,16 +19,11 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[MainViewModel::class.java]
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_splash)
-        viewModel.loadData()
         CoroutineScope(Dispatchers.Main).launch {
-            delay(5000)
+            delay(4000)
             setContentView(binding.root)
             supportFragmentManager
                 .beginTransaction().replace(R.id.placeHolder, MainFragment.newInstance())

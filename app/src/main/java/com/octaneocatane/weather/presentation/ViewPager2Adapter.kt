@@ -1,4 +1,4 @@
-package com.octaneocatane.api.presentation
+package com.octaneocatane.weather.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

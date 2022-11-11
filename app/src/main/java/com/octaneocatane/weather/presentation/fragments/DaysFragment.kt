@@ -36,7 +36,7 @@ class DaysFragment : Fragment()
         super.onViewCreated(view, savedInstanceState)
         initRcView()
         viewModel.daysList.observe(viewLifecycleOwner) {
-            weatherAdapter.submitList(it)
+            weatherAdapter.submitList(it.drop(1))
         }
     }
 

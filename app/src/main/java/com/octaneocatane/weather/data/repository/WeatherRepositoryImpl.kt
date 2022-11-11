@@ -20,9 +20,9 @@ class WeatherRepositoryImpl(application: Application) : WeatherRepository {
     private val daysMapper = DaysListMapper()
     private val currentMapper = CurrentWeatherMapper()
 
-    override suspend fun loadData() {
+    override suspend fun loadData(city: String) {
         try {
-            val requestResult = apiService.getForecast()
+            val requestResult = apiService.getForecast(q = city)
 
             val currentWeather = currentMapper.mapDtoToCurrentDbModel(requestResult)
             val hourList = hoursMapper.mapDtoToHoursListModelDb(requestResult)
@@ -38,9 +38,10 @@ class WeatherRepositoryImpl(application: Application) : WeatherRepository {
             daysWeatherDao.insertDaysWeatherList(dayList)
 
         } catch (e: Exception) {
-           e.stackTraceToString()
+            e.stackTraceToString()
         }
     }
+
 
     override suspend fun getHoursWeatherList(): List<WeatherEntity> {
         val listHoursItemModelDb = hoursWeatherDao.getHoursWeatherList()
@@ -50,6 +51,7 @@ class WeatherRepositoryImpl(application: Application) : WeatherRepository {
     override suspend fun getDaysWeatherList(): List<WeatherEntity> {
         val listDayItemModelDb = daysWeatherDao.getDaysWeatherList()
         return daysMapper.mapDaysModelDbListToEntityList(listDayItemModelDb)
+
     }
 
     override suspend fun getCurrentWeather(): WeatherEntity {
