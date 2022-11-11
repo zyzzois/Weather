@@ -1,24 +1,26 @@
 package com.octaneocatane.weather.data.repository
 
-import android.app.Application
-import com.octaneocatane.weather.data.database.AppDatabase
+import com.octaneocatane.weather.data.database.CurrentWeatherDao
+import com.octaneocatane.weather.data.database.DaysWeatherDao
+import com.octaneocatane.weather.data.database.HoursWeatherDao
 import com.octaneocatane.weather.data.mapper.CurrentWeatherMapper
 import com.octaneocatane.weather.data.mapper.DaysListMapper
 import com.octaneocatane.weather.data.mapper.HoursListMapper
 import com.octaneocatane.weather.data.network.ApiFactory
+import com.octaneocatane.weather.data.network.ApiService
 import com.octaneocatane.weather.domain.WeatherEntity
 import com.octaneocatane.weather.domain.WeatherRepository
+import javax.inject.Inject
 
-class WeatherRepositoryImpl(application: Application) : WeatherRepository {
-
-    private val currentWeatherDao = AppDatabase.getInstance(application).currentWeatherDao()
-    private val daysWeatherDao = AppDatabase.getInstance(application).daysWeatherDao()
-    private val hoursWeatherDao = AppDatabase.getInstance(application).hoursWeatherDao()
-
-    private val apiService = ApiFactory.apiService
-    private val hoursMapper = HoursListMapper()
-    private val daysMapper = DaysListMapper()
-    private val currentMapper = CurrentWeatherMapper()
+class WeatherRepositoryImpl @Inject constructor(
+    private val hoursMapper: HoursListMapper,
+    private val daysMapper: DaysListMapper,
+    private val currentMapper: CurrentWeatherMapper,
+    private val currentWeatherDao: CurrentWeatherDao,
+    private val daysWeatherDao: DaysWeatherDao,
+    private val hoursWeatherDao: HoursWeatherDao,
+    private val apiService: ApiService
+) : WeatherRepository {
 
     override suspend fun loadData(city: String) {
         try {
@@ -42,7 +44,6 @@ class WeatherRepositoryImpl(application: Application) : WeatherRepository {
         }
     }
 
-
     override suspend fun getHoursWeatherList(): List<WeatherEntity> {
         val listHoursItemModelDb = hoursWeatherDao.getHoursWeatherList()
         return hoursMapper.mapHourModelDbListToEntityList(listHoursItemModelDb)
@@ -51,7 +52,6 @@ class WeatherRepositoryImpl(application: Application) : WeatherRepository {
     override suspend fun getDaysWeatherList(): List<WeatherEntity> {
         val listDayItemModelDb = daysWeatherDao.getDaysWeatherList()
         return daysMapper.mapDaysModelDbListToEntityList(listDayItemModelDb)
-
     }
 
     override suspend fun getCurrentWeather(): WeatherEntity {

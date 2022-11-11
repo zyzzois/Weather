@@ -9,7 +9,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.octaneocatane.api"
+        applicationId "com.octaneocatane.weather"
         minSdk 24
         targetSdk 32
         versionCode 1

@@ -6,14 +6,19 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.LocationServices
 import com.octaneocatane.weather.R
+import com.octaneocatane.weather.WeatherApplication
 import com.octaneocatane.weather.databinding.ActivityMainBinding
 import com.octaneocatane.weather.presentation.fragments.MainFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+    private val component by lazy {
+        (application as WeatherApplication).component
+    }
 
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -23,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_splash)
         CoroutineScope(Dispatchers.Main).launch {
-            delay(4000)
+            delay(1000)
             setContentView(binding.root)
             supportFragmentManager
                 .beginTransaction().replace(R.id.placeHolder, MainFragment.newInstance())
