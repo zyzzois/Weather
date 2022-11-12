@@ -2,6 +2,7 @@ package com.octaneocatane.weather.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.octaneocatane.weather.WeatherApplication
 import com.octaneocatane.weather.databinding.FragmentDaysBinding
+import com.octaneocatane.weather.domain.WeatherEntity
 import com.octaneocatane.weather.presentation.MainViewModel
 import com.octaneocatane.weather.presentation.ViewModelFactory
 import com.octaneocatane.weather.presentation.recyclerview.WeatherAdapter
 import javax.inject.Inject
 
-class DaysFragment : Fragment() {
+class DaysFragment : Fragment(), DataFragmentsInterface {
 
     private val component by lazy {
         (requireActivity().application as WeatherApplication).component
@@ -51,13 +53,17 @@ class DaysFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRcView()
         viewModel.daysList.observe(viewLifecycleOwner) {
-            weatherAdapter.submitList(it/*.drop(1)*/)
+            weatherAdapter.submitList(it)
         }
     }
 
     private fun initRcView() = with(binding) {
         rcViewDays.layoutManager = LinearLayoutManager(activity)
-        weatherAdapter = WeatherAdapter()
+        weatherAdapter = WeatherAdapter(object : WeatherAdapter.Listener {
+            override fun obChooseDay(day: WeatherEntity) {
+                setDataToViewModel(day)
+            }
+        })
         rcViewDays.adapter = weatherAdapter
     }
 
@@ -70,5 +76,9 @@ class DaysFragment : Fragment() {
         private const val BINDING_EXCEPTION_MESSAGE = "FragmentShopItemBinding = null"
         @JvmStatic
         fun newInstance() = DaysFragment()
+    }
+
+    override fun setDataToViewModel(data: WeatherEntity) {
+        Log.d("TAG", data.toString())
     }
 }
