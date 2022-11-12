@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="16dp"
-                android:text="@string/max_min_default_text"
+                android:text="@string/max_min_texts"
                 android:fontFamily="@font/arial_rounded_mt"
                 android:textColor="#FFFDE7"
                 app:layout_constraintBottom_toBottomOf="parent"

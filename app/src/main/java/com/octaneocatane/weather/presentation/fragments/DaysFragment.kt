@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.octaneocatane.weather.R
 import com.octaneocatane.weather.WeatherApplication
 import com.octaneocatane.weather.databinding.FragmentDaysBinding
 import com.octaneocatane.weather.presentation.MainViewModel
@@ -52,7 +51,7 @@ class DaysFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRcView()
         viewModel.daysList.observe(viewLifecycleOwner) {
-            weatherAdapter.submitList(it.drop(1))
+            weatherAdapter.submitList(it/*.drop(1)*/)
         }
     }
 
