@@ -1,10 +1,14 @@
 package com.octaneocatane.weather.data.mapper
 
 import com.octaneocatane.weather.data.database.modelsDB.DayItemModelDb
+import com.octaneocatane.weather.data.mapper.CurrentWeatherMapper.Companion.DAY_PATTERN
+import com.octaneocatane.weather.data.mapper.CurrentWeatherMapper.Companion.MONTHS_PATTERN
+import com.octaneocatane.weather.data.mapper.CurrentWeatherMapper.Companion.PART_TIME_PATTERN
 import com.octaneocatane.weather.utils.Constants
 import com.octaneocatane.weather.data.network.models.ForecastdayDto
 import com.octaneocatane.weather.data.network.models.WeatherInfoDto
 import com.octaneocatane.weather.domain.WeatherEntity
+import com.octaneocatane.weather.utils.Constants.DEGREE_SYMBOL
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -32,7 +36,8 @@ class DaysListMapper @Inject constructor(){
         currentTemp = Constants.UNDEFINED_CURRENT_TEMP,
         maxTemp = dayItem.maxTemp.toString() + DEGREE_SYMBOL,
         minTemp = dayItem.minTemp.toString() + DEGREE_SYMBOL,
-        conditionIcon = dayItem.conditionIcon
+        conditionIcon = dayItem.conditionIcon,
+        lastUpdated = Constants.DEFAULT_HOUR
     )
     fun mapDaysModelDbListToEntityList(modelDbList: List<DayItemModelDb>): List<WeatherEntity>{
        return modelDbList.map {
@@ -41,32 +46,13 @@ class DaysListMapper @Inject constructor(){
     }
 
     private fun convertDate(date: String): String {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val dayFormat = SimpleDateFormat("dd", Locale.getDefault())
-        val monthFormat = SimpleDateFormat("MM", Locale.getDefault())
-        val result = inputFormat.parse(date)
+        val inputFormat = SimpleDateFormat(PART_TIME_PATTERN, Locale.getDefault())
+        val dayFormat = SimpleDateFormat(DAY_PATTERN, Locale.getDefault())
+        val monthFormat = SimpleDateFormat(MONTHS_PATTERN, Locale.getDefault())
+        val result = inputFormat.parse(date)!!
         val monthNumber = monthFormat.format(result)
         val day = dayFormat.format(result)
-        return "$day ${monthsList[monthNumber.toInt()]} "
+        return "$day ${Constants.MONTH_LIST[monthNumber.toInt() - 1]} "
     }
 
-    private val monthsList = listOf(
-        "",
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    )
-
-    companion object {
-        const val DEGREE_SYMBOL = "°"
-    }
 }
