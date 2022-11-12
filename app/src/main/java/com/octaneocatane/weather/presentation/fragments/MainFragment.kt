@@ -154,7 +154,17 @@ class MainFragment : Fragment() {
             checkLocation()
             stopShimmer()
         }
+
         buttonTypeCity.setOnClickListener {
+            /*
+            DialogManager.searchCityCustomDialog(requireContext(), object : DialogManager.Listener {
+                override fun onClick(name: String?) {
+                    name?.let {
+                        viewModel.loadData(it)
+                    }
+                }
+            })
+            */
             DialogManager.searchByNameDialog(requireContext(), object : DialogManager.Listener {
                 override fun onClick(name: String?) {
                     name?.let { viewModel.loadData(it) }

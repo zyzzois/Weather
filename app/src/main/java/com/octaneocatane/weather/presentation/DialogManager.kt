@@ -1,13 +1,12 @@
 package com.octaneocatane.weather.presentation
 
 import android.app.AlertDialog
+import android.app.Application
 import android.content.Context
-import android.widget.EditText
-import android.widget.FrameLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.octaneocatane.weather.R
+import javax.inject.Inject
 
 object DialogManager {
     fun locationSettingsDialog(context: Context, listener: Listener){
@@ -43,6 +42,29 @@ object DialogManager {
         }
         dialog.show()
     }
+
+    /*
+    fun searchCityCustomDialog(context: Context, listener: Listener){
+        val builder = MaterialAlertDialogBuilder(context, R.style.AlertDialogTheme)
+        val view = R.layout.custom_alert_dialog
+        //val constraintLayout = activity.layoutInflater.inflate(view, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.setTitle("Enter the name of the city:")
+        dialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK"){ _, _ ->
+            listener.onClick(view.text.toString())
+            dialog.dismiss()
+        }
+        dialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Show map"){ _, _ ->
+            dialog.dismiss()
+        }
+        dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel"){ _, _ ->
+            dialog.dismiss()
+        }
+        dialog.show()
+    }*/
+
+
     interface Listener{
         fun onClick(name: String?)
     }
