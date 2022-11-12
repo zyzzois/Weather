@@ -31,7 +31,7 @@ class DaysFragment : Fragment() {
 
     private var _binding: FragmentDaysBinding? = null
     private val binding: FragmentDaysBinding
-        get() = _binding ?: throw RuntimeException("FragmentShopItemBinding = null")
+        get() = _binding ?: throw RuntimeException(BINDING_EXCEPTION_MESSAGE)
 
     private lateinit var weatherAdapter: WeatherAdapter
 
@@ -68,6 +68,7 @@ class DaysFragment : Fragment() {
     }
 
     companion object {
+        private const val BINDING_EXCEPTION_MESSAGE = "FragmentShopItemBinding = null"
         @JvmStatic
         fun newInstance() = DaysFragment()
     }

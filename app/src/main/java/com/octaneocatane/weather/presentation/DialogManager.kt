@@ -3,7 +3,10 @@ package com.octaneocatane.weather.presentation
 import android.app.AlertDialog
 import android.content.Context
 import android.widget.EditText
+import android.widget.FrameLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.octaneocatane.weather.R
 
 object DialogManager {
@@ -26,7 +29,8 @@ object DialogManager {
     }
     fun searchByNameDialog(context: Context, listener: Listener){
         val builder = MaterialAlertDialogBuilder(context, R.style.AlertDialogTheme)
-        val edName = EditText(context)
+        //val edName = R.layout.input_city_layout
+        val edName = TextInputEditText(context)
         builder.setView(edName)
         val dialog = builder.create()
         dialog.setTitle("City name:")

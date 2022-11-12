@@ -31,7 +31,7 @@ class HoursFragment : Fragment() {
 
     private var _binding: FragmentHoursBinding? = null
     private val binding: FragmentHoursBinding
-        get() = _binding ?: throw RuntimeException("FragmentHoursBinding = null")
+        get() = _binding ?: throw RuntimeException(BINDING_EXCEPTION_MESSAGE)
 
     private lateinit var weatherAdapter: WeatherAdapter
 
@@ -68,6 +68,8 @@ class HoursFragment : Fragment() {
     }
 
     companion object {
+        private const val BINDING_EXCEPTION_MESSAGE = "FragmentHoursBinding = null"
+
         @JvmStatic
         fun newInstance() = HoursFragment()
     }
