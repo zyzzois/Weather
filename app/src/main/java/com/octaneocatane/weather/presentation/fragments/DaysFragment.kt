@@ -8,15 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.octaneocatane.weather.R
 import com.octaneocatane.weather.WeatherApplication
 import com.octaneocatane.weather.databinding.FragmentDaysBinding
+import com.octaneocatane.weather.domain.WeatherEntity
 import com.octaneocatane.weather.presentation.MainViewModel
 import com.octaneocatane.weather.presentation.ViewModelFactory
 import com.octaneocatane.weather.presentation.recyclerview.WeatherAdapter
 import javax.inject.Inject
 
-class DaysFragment : Fragment() {
+class DaysFragment : Fragment(), DataFragmentsInterface {
 
     private val component by lazy {
         (requireActivity().application as WeatherApplication).component
@@ -31,7 +31,7 @@ class DaysFragment : Fragment() {
 
     private var _binding: FragmentDaysBinding? = null
     private val binding: FragmentDaysBinding
-        get() = _binding ?: throw RuntimeException("FragmentShopItemBinding = null")
+        get() = _binding ?: throw RuntimeException(BINDING_EXCEPTION_MESSAGE)
 
     private lateinit var weatherAdapter: WeatherAdapter
 
@@ -52,13 +52,17 @@ class DaysFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRcView()
         viewModel.daysList.observe(viewLifecycleOwner) {
-            weatherAdapter.submitList(it.drop(1))
+            weatherAdapter.submitList(it)
         }
     }
 
     private fun initRcView() = with(binding) {
         rcViewDays.layoutManager = LinearLayoutManager(activity)
-        weatherAdapter = WeatherAdapter()
+        weatherAdapter = WeatherAdapter(object : WeatherAdapter.Listener {
+            override fun obChooseDay(day: WeatherEntity) {
+                setDataToViewModel(day)
+            }
+        })
         rcViewDays.adapter = weatherAdapter
     }
 
@@ -68,7 +72,12 @@ class DaysFragment : Fragment() {
     }
 
     companion object {
+        private const val BINDING_EXCEPTION_MESSAGE = "FragmentShopItemBinding = null"
         @JvmStatic
         fun newInstance() = DaysFragment()
+    }
+
+    override fun setDataToViewModel(data: WeatherEntity) {
+        viewModel.setDataToCurrentCard(data)
     }
 }

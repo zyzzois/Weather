@@ -7,5 +7,6 @@ data class WeatherEntity(
     val currentTemp: String,
     val maxTemp: String,
     val minTemp: String,
-    val conditionIcon: String
+    val conditionIcon: String,
+    val lastUpdated: String
 )

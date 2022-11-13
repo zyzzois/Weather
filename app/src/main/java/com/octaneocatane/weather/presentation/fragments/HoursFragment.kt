@@ -2,13 +2,12 @@ package com.octaneocatane.weather.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.octaneocatane.weather.R
 import com.octaneocatane.weather.WeatherApplication
 import com.octaneocatane.weather.databinding.FragmentHoursBinding
 import com.octaneocatane.weather.presentation.MainViewModel
@@ -31,7 +30,7 @@ class HoursFragment : Fragment() {
 
     private var _binding: FragmentHoursBinding? = null
     private val binding: FragmentHoursBinding
-        get() = _binding ?: throw RuntimeException("FragmentHoursBinding = null")
+        get() = _binding ?: throw RuntimeException(BINDING_EXCEPTION_MESSAGE)
 
     private lateinit var weatherAdapter: WeatherAdapter
 
@@ -58,7 +57,7 @@ class HoursFragment : Fragment() {
 
     private fun initRcView() = with(binding) {
         rcView.layoutManager = LinearLayoutManager(activity)
-        weatherAdapter = WeatherAdapter()
+        weatherAdapter = WeatherAdapter(null)
         rcView.adapter = weatherAdapter
     }
 
@@ -67,7 +66,10 @@ class HoursFragment : Fragment() {
         _binding = null
     }
 
+
     companion object {
+        private const val BINDING_EXCEPTION_MESSAGE = "FragmentHoursBinding = null"
+
         @JvmStatic
         fun newInstance() = HoursFragment()
     }

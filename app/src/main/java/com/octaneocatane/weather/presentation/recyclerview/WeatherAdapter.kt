@@ -1,6 +1,7 @@
 package com.octaneocatane.weather.presentation.recyclerview
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.octaneocatane.weather.databinding.ListItemBinding
@@ -8,7 +9,14 @@ import com.octaneocatane.weather.domain.WeatherEntity
 import com.octaneocatane.weather.utils.Constants
 import com.squareup.picasso.Picasso
 
-class WeatherAdapter : ListAdapter<WeatherEntity, WeatherHolder>(WeatherItemDiffCallBack) {
+class WeatherAdapter(
+    private val listener: Listener?
+) : ListAdapter<WeatherEntity, WeatherHolder>(WeatherItemDiffCallBack), View.OnClickListener {
+
+    override fun onClick(v: View?) {
+        val day = v?.tag as WeatherEntity
+        listener?.obChooseDay(day)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherHolder {
         val binding = ListItemBinding.inflate(
@@ -16,6 +24,9 @@ class WeatherAdapter : ListAdapter<WeatherEntity, WeatherHolder>(WeatherItemDiff
             parent,
             false
         )
+
+        binding.root.setOnClickListener(this)
+
         return WeatherHolder(binding)
     }
 
@@ -24,6 +35,7 @@ class WeatherAdapter : ListAdapter<WeatherEntity, WeatherHolder>(WeatherItemDiff
         val weatherItem = getItem(position)
 
         with(holder.binding) {
+            root.tag =  weatherItem
 
             val itemIsHour = weatherItem.currentTemp != Constants.UNDEFINED_CURRENT_TEMP
             val itemIsDay = weatherItem.currentTemp == Constants.UNDEFINED_CURRENT_TEMP
@@ -37,11 +49,20 @@ class WeatherAdapter : ListAdapter<WeatherEntity, WeatherHolder>(WeatherItemDiff
                 tvTemp.text = weatherItem.currentTemp
             }
 
-            Picasso.get().load("https:" + weatherItem.conditionIcon).into(imHourItemCondition)
+            Picasso.get().load(HTTPS + weatherItem.conditionIcon).into(imHourItemCondition)
             tvCondition.text = weatherItem.conditionText
             tvDate.text = weatherItem.time
         }
     }
+
+    interface Listener {
+        fun obChooseDay(day: WeatherEntity)
+    }
+
+    companion object {
+        private const val HTTPS = "https:"
+    }
+
 }
 
 

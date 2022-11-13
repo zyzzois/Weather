@@ -10,5 +10,6 @@ data class HourItemModelDB(
     val conditionIcon: String,
     val time: String,
     val conditionText: String,
-    val temp: Int
+    val temp: Int,
+    val lastUpdatedHour: String
 )

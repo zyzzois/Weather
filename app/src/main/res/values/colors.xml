@@ -10,4 +10,6 @@
     <color name="light_blue">#81D4FA</color>
     <color name="light_blue_alert_dialog">#E481D4FA</color>
     <color name="blue">#6629B6F6</color>
+    <color name="shimmer_color">#B5B5B5</color>
+    <color name="text_color_main">#FFFDE7</color>
 </resources>

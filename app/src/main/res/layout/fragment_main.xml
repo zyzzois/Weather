@@ -7,6 +7,7 @@
     tools:context=".presentation.fragments.MainFragment">
 
     <ImageView
+        android:visibility="visible"
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,9 +18,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="TODO" />
+         />
 
     <androidx.cardview.widget.CardView
+        android:visibility="invisible"
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +59,7 @@
                 android:src="@drawable/ic_launcher_foreground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="TODO" />
+                />
 
             <TextView
                 android:id="@+id/tvCity"
@@ -65,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/city_default_text"
                 android:fontFamily="@font/arial_rounded_mt"
-                android:textColor="#FFFDE7"
+                android:textColor="@color/text_color_main"
                 android:textSize="45sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +80,7 @@
                 android:layout_marginTop="14dp"
                 android:text="@string/temp_default_text"
                 android:fontFamily="@font/arial_rounded_mt"
-                android:textColor="#FFFDE7"
+                android:textColor="@color/text_color_main"
                 android:textSize="50sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +95,7 @@
                 android:layout_marginTop="14dp"
                 android:text="@string/condition_default_text"
                 android:fontFamily="@font/arial_rounded_mt"
-                android:textColor="#FFFDE7"
+                android:textColor="@color/text_color_main"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvCurrentTemp" />
@@ -104,9 +106,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="16dp"
-                android:text="@string/max_min_default_text"
+                android:text="@string/max_min_texts"
                 android:fontFamily="@font/arial_rounded_mt"
-                android:textColor="#FFFDE7"
+                android:textColor="@color/text_color_main"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -121,8 +123,7 @@
                 android:background="@null"
                 android:src="@drawable/ic_baseline_cloud_sync"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:contentDescription="TODO" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageButton
                 android:id="@+id/buttonTypeCity"
@@ -133,8 +134,7 @@
                 android:background="@null"
                 android:src="@drawable/ic_baseline_edit_location_alt_24"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:contentDescription="@string/button_type_city" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -154,16 +154,92 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="hours" />
+            android:text="@string/tab_layout_hours" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="days" />
+            android:text="@string/tab_layout_days" />
 
     </com.google.android.material.tabs.TabLayout>
 
+    <!-- -->
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/shimmer_color"
+            android:visibility="visible"
+            android:id="@+id/cardViewShimmer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="6dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </androidx.cardview.widget.CardView>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <include layout="@layout/shimmer_list_item">
+
+            </include>
+            <include layout="@layout/shimmer_list_item">
+
+            </include>
+            <include layout="@layout/shimmer_list_item">
+
+            </include>
+            <include layout="@layout/shimmer_list_item">
+
+            </include>
+            <include layout="@layout/shimmer_list_item">
+
+            </include>
+            <include layout="@layout/shimmer_list_item">
+
+            </include>
+            <include layout="@layout/shimmer_list_item">
+
+            </include>
+            <include layout="@layout/shimmer_list_item">
+
+            </include>
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
     <androidx.viewpager2.widget.ViewPager2
+        android:visibility="invisible"
         android:id="@+id/viewPager2"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -174,4 +250,5 @@
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout"
         app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
