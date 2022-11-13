@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.octaneocatane.weather.R
 import com.octaneocatane.weather.WeatherApplication
+import com.octaneocatane.weather.databinding.CustomAlertDialogBinding
 import com.octaneocatane.weather.databinding.FragmentMainBinding
 import com.octaneocatane.weather.presentation.DialogManager
 import com.octaneocatane.weather.presentation.MainViewModel
@@ -62,6 +63,10 @@ class MainFragment : Fragment() {
     private val fragmentList = listOf(HoursFragment.newInstance(), DaysFragment.newInstance())
     private val tabList = listOf(HOURS, DAYS)
 
+    private val customAlertDialogBinding by lazy {
+        CustomAlertDialogBinding.inflate(layoutInflater)
+    }
+
     override fun onAttach(context: Context) {
         component.inject(this@MainFragment)
         super.onAttach(context)
@@ -99,7 +104,7 @@ class MainFragment : Fragment() {
         val lm = activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val locationEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
         return if (!locationEnabled) {
-            Snackbar.make(binding.root, LOCATION_DISABLED_WARNING, Snackbar.LENGTH_SHORT).show()
+            /*Snackbar.make(binding.root, LOCATION_DISABLED_WARNING, Snackbar.LENGTH_SHORT).show()*/
             false
         } else {
             Snackbar.make(binding.root, LOADING_DATA_TEXT, Snackbar.LENGTH_SHORT).show()
@@ -150,18 +155,11 @@ class MainFragment : Fragment() {
         }
 
         buttonTypeCity.setOnClickListener {
-            /*
-            DialogManager.searchCityCustomDialog(requireContext(), object : DialogManager.Listener {
+            DialogManager.searchByNameDialog(requireContext(), object : DialogManager.Listener {
                 override fun onClick(name: String?) {
                     name?.let {
                         viewModel.loadData(it)
                     }
-                }
-            })
-            */
-            DialogManager.searchByNameDialog(requireContext(), object : DialogManager.Listener {
-                override fun onClick(name: String?) {
-                    name?.let { viewModel.loadData(it) }
                 }
             })
         }

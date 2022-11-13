@@ -28,6 +28,11 @@ class MainViewModel @Inject constructor(
     val daysList: LiveData<List<WeatherEntity>>
         get() = _daysList
 
+    fun setDataToCurrentCard(data: WeatherEntity) {
+        _currentWeather.value = data
+
+    }
+
     fun loadData(city: String) {
         viewModelScope.launch {
             loadDataUseCase(city)

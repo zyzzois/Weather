@@ -10,12 +10,12 @@ import com.octaneocatane.weather.utils.Constants
 import com.squareup.picasso.Picasso
 
 class WeatherAdapter(
-    private val listener: Listener
+    private val listener: Listener?
 ) : ListAdapter<WeatherEntity, WeatherHolder>(WeatherItemDiffCallBack), View.OnClickListener {
 
     override fun onClick(v: View?) {
         val day = v?.tag as WeatherEntity
-        listener.obChooseDay(day)
+        listener?.obChooseDay(day)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherHolder {
@@ -62,8 +62,6 @@ class WeatherAdapter(
     companion object {
         private const val HTTPS = "https:"
     }
-
-
 
 }
 

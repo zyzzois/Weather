@@ -8,11 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.octaneocatane.weather.R
 import com.octaneocatane.weather.WeatherApplication
 import com.octaneocatane.weather.databinding.FragmentHoursBinding
-import com.octaneocatane.weather.domain.WeatherEntity
 import com.octaneocatane.weather.presentation.MainViewModel
 import com.octaneocatane.weather.presentation.ViewModelFactory
 import com.octaneocatane.weather.presentation.recyclerview.WeatherAdapter
@@ -60,11 +57,7 @@ class HoursFragment : Fragment() {
 
     private fun initRcView() = with(binding) {
         rcView.layoutManager = LinearLayoutManager(activity)
-        weatherAdapter = WeatherAdapter(object : WeatherAdapter.Listener {
-            override fun obChooseDay(day: WeatherEntity) {
-                TODO("Not yet implemented")
-            }
-        })
+        weatherAdapter = WeatherAdapter(null)
         rcView.adapter = weatherAdapter
     }
 
