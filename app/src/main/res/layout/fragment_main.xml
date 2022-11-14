@@ -163,6 +163,7 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+    <!--
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_card"
         android:layout_width="match_parent"
@@ -189,7 +190,7 @@
             app:layout_constraintTop_toTopOf="parent">
         </androidx.cardview.widget.CardView>
 
-    </com.facebook.shimmer.ShimmerFrameLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>-->
 
 
     <com.facebook.shimmer.ShimmerFrameLayout
