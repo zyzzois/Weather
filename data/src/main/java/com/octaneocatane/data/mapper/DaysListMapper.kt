@@ -22,6 +22,7 @@ class DaysListMapper @Inject constructor(){
         weatherInfoDto.forecast.forecastForDaysList.map {
             parseDay(it)
         }
+
     private fun parseDay(day: ForecastdayDto) = DayItemModelDb(
         id = day.idDay,
         city = UNDEFINED_CITY,
@@ -32,6 +33,7 @@ class DaysListMapper @Inject constructor(){
         minTemp = day.day.minTemp.toInt(),
         temp = day.day.averageTemp.toInt()
     )
+
     private fun mapDaysModelDbToEntity(dayItem: DayItemModelDb) = WeatherEntity(
         city = UNDEFINED_CITY,
         time = convertDate(dayItem.time),
@@ -42,6 +44,7 @@ class DaysListMapper @Inject constructor(){
         conditionIcon = dayItem.conditionIcon,
         lastUpdated = DEFAULT_HOUR
     )
+
     fun mapDaysModelDbListToEntityList(modelDbList: List<DayItemModelDb>): List<WeatherEntity>{
        return modelDbList.map {
             mapDaysModelDbToEntity(it)

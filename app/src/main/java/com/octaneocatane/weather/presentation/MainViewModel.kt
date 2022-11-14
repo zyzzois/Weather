@@ -1,13 +1,11 @@
 package com.octaneocatane.weather.presentation
 
-import androidx.lifecycle.*
 import com.octaneocatane.domain.WeatherEntity
 import com.octaneocatane.domain.usecases.GetCurrentWeatherUseCase
 import com.octaneocatane.domain.usecases.GetDaysListUseCase
 import com.octaneocatane.domain.usecases.GetHoursListUseCase
 import com.octaneocatane.domain.usecases.LoadDataUseCase
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 import android.Manifest
 import android.app.Activity
 import android.content.Context
@@ -23,7 +21,6 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
@@ -103,7 +100,5 @@ class MainViewModel @Inject constructor(
                 loadData(_currentLocationCoordinates.value.toString())
             }
     }
-
-
 
 }

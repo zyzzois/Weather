@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.octaneocatane.weather.R
+import com.octaneocatane.weather.app.WeatherApplication
 import com.octaneocatane.weather.databinding.FragmentMainBinding
 import com.octaneocatane.weather.presentation.DialogManager
 import com.octaneocatane.weather.presentation.MainViewModel
@@ -70,24 +71,13 @@ class MainFragment : Fragment() {
         updateCurrentCard()
     }
 
-    /*
-    private fun checkNetworkConnection() {
-        with(viewModel) {
-            checkNetworkConnection(requireActivity())
-            if (networkConnectionEnabled.value == false)
-                showNetworkSettingsDialog()
-        }
-    }*/
-
     private fun checkLocation() {
         with(viewModel) {
             checkNetworkConnection(requireActivity())
             checkLocationConnection(requireActivity())
             if (locationEnabled.value == true) {
                 showSnackbar(binding.root, LOADING_DATA_TEXT)
-
                 getCurrentLocation(requireContext())
-                /*loadData(currentLocationCoordinates.toString())*/
             } else {
                 showSnackbar(binding.root, LOCATION_DISABLED_WARNING)
                 showLocationSettingsDialog()
