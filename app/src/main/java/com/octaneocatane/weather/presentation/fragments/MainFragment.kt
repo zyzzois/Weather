@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.octaneocatane.weather.R
-import com.octaneocatane.weather.WeatherApplication
 import com.octaneocatane.weather.databinding.FragmentMainBinding
 import com.octaneocatane.weather.presentation.DialogManager
 import com.octaneocatane.weather.presentation.MainViewModel

@@ -1,5 +1,13 @@
 package com.octaneocatane.weather.presentation
 
+import androidx.lifecycle.*
+import com.octaneocatane.domain.WeatherEntity
+import com.octaneocatane.domain.usecases.GetCurrentWeatherUseCase
+import com.octaneocatane.domain.usecases.GetDaysListUseCase
+import com.octaneocatane.domain.usecases.GetHoursListUseCase
+import com.octaneocatane.domain.usecases.LoadDataUseCase
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 import android.Manifest
 import android.app.Activity
 import android.content.Context
@@ -15,11 +23,6 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
-import com.octaneocatane.weather.domain.WeatherEntity
-import com.octaneocatane.weather.domain.usecase.GetCurrentWeatherUseCase
-import com.octaneocatane.weather.domain.usecase.GetDaysListUseCase
-import com.octaneocatane.weather.domain.usecase.GetHoursListUseCase
-import com.octaneocatane.weather.domain.usecase.LoadDataUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

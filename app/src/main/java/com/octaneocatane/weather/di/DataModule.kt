@@ -1,14 +1,14 @@
 package com.octaneocatane.weather.di
 
 import android.app.Application
-import com.octaneocatane.weather.data.database.AppDatabase
-import com.octaneocatane.weather.data.database.CurrentWeatherDao
-import com.octaneocatane.weather.data.database.DaysWeatherDao
-import com.octaneocatane.weather.data.database.HoursWeatherDao
-import com.octaneocatane.weather.data.network.ApiFactory
-import com.octaneocatane.weather.data.network.ApiService
-import com.octaneocatane.weather.data.repository.WeatherRepositoryImpl
-import com.octaneocatane.weather.domain.WeatherRepository
+import com.octaneocatane.data.database.AppDatabase
+import com.octaneocatane.data.database.CurrentWeatherDao
+import com.octaneocatane.data.database.DaysWeatherDao
+import com.octaneocatane.data.database.HoursWeatherDao
+import com.octaneocatane.data.network.ApiFactory
+import com.octaneocatane.data.network.ApiService
+import com.octaneocatane.data.repository.WeatherRepositoryImpl
+import com.octaneocatane.domain.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
