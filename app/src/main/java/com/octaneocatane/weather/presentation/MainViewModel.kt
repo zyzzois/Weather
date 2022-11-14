@@ -1,11 +1,11 @@
 package com.octaneocatane.weather.presentation
 
 import androidx.lifecycle.*
-import com.octaneocatane.weather.domain.WeatherEntity
-import com.octaneocatane.weather.domain.usecases.GetCurrentWeatherUseCase
-import com.octaneocatane.weather.domain.usecases.GetDaysListUseCase
-import com.octaneocatane.weather.domain.usecases.GetHoursListUseCase
-import com.octaneocatane.weather.domain.usecases.LoadDataUseCase
+import com.octaneocatane.domain.WeatherEntity
+import com.octaneocatane.domain.usecases.GetCurrentWeatherUseCase
+import com.octaneocatane.domain.usecases.GetDaysListUseCase
+import com.octaneocatane.domain.usecases.GetHoursListUseCase
+import com.octaneocatane.domain.usecases.LoadDataUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

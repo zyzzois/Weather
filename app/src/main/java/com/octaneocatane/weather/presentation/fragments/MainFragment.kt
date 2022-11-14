@@ -23,7 +23,7 @@ import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.octaneocatane.weather.R
-import com.octaneocatane.weather.WeatherApplication
+import com.octaneocatane.weather.app.WeatherApplication
 import com.octaneocatane.weather.databinding.CustomAlertDialogBinding
 import com.octaneocatane.weather.databinding.FragmentMainBinding
 import com.octaneocatane.weather.presentation.DialogManager

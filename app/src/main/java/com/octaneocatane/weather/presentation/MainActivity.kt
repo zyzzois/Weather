@@ -2,18 +2,13 @@ package com.octaneocatane.weather.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.result.ActivityResultLauncher
-import androidx.lifecycle.ViewModelProvider
-import com.google.android.gms.location.LocationServices
 import com.octaneocatane.weather.R
-import com.octaneocatane.weather.WeatherApplication
 import com.octaneocatane.weather.databinding.ActivityMainBinding
 import com.octaneocatane.weather.presentation.fragments.MainFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 

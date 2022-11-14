@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.octaneocatane.weather.databinding.ListItemBinding
-import com.octaneocatane.weather.domain.WeatherEntity
+import com.octaneocatane.domain.WeatherEntity
 import com.octaneocatane.weather.utils.Constants
 import com.squareup.picasso.Picasso
 
