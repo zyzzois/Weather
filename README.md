@@ -1,6 +1,6 @@
 # Weather
 
-A simple application that shows the weather anywhere in the world and at the current location.
+Simple app that shows the weather anywhere in the world and at the current location.
 
 ### Technology stack
 * Kotlin
