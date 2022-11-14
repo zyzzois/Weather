@@ -8,7 +8,7 @@
     <string name="button_type_city">type your city</string>
     <string name="tab_layout_hours">hours</string>
     <string name="tab_layout_days">days</string>
-    <string name="max_min_texts">%1$s - max | min - %2$s</string>
+    <string name="max_min_texts">%1$s max | min %2$s</string>
     <string name="alert_dialog_city_name">"City name:"</string>
     <string name="alert_dialog_cancel">Cancel</string>
     <string name="alert_dialog_ok">OK</string>
