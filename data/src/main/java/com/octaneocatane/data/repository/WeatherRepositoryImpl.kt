@@ -30,12 +30,11 @@ class WeatherRepositoryImpl @Inject constructor(
             val dayList = daysMapper.mapDtoToDaysListModelDb(requestResult)
 
             currentWeatherDao.clearCurrentWeather()
-            currentWeatherDao.insertCurrentWeather(currentWeather)
-
             hoursWeatherDao.clearHoursWeather()
-            hoursWeatherDao.insertHoursWeatherList(hourList)
-
             daysWeatherDao.clearDaysWeather()
+
+            currentWeatherDao.insertCurrentWeather(currentWeather)
+            hoursWeatherDao.insertHoursWeatherList(hourList)
             daysWeatherDao.insertDaysWeatherList(dayList)
 
         } catch (e: Exception) {
