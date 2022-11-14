@@ -14,6 +14,7 @@ object Constants {
     const val HOURS_MINUTES_PATTERN = "HH:mm"
     const val HOURS_PATTERN = "HH"
     const val PART_TIME_PATTERN = "yyyy-MM-dd"
+    const val BASE_URL = "https://api.weatherapi.com"
 
     val MONTH_LIST = listOf(
         "January",
