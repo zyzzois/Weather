@@ -1,10 +1,10 @@
 package com.octaneocatane.data.network
 
+import com.octaneocatane.utils.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiFactory {
-    private const val BASE_URL = "https://api.weatherapi.com"
 
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
