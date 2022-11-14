@@ -163,7 +163,6 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <!-- -->
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_card"
         android:layout_width="match_parent"
@@ -206,6 +205,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="6dp"
             >
 
             <include layout="@layout/shimmer_list_item">

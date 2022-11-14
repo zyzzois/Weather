@@ -1,4 +1,4 @@
-package com.octaneocatane.weather.domain.usecases
+package com.octaneocatane.weather.domain.usecase
 
 import com.octaneocatane.weather.domain.WeatherRepository
 import javax.inject.Inject

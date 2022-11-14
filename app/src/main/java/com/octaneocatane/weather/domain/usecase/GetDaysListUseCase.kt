@@ -1,4 +1,4 @@
-package com.octaneocatane.weather.domain.usecases
+package com.octaneocatane.weather.domain.usecase
 
 import com.octaneocatane.weather.domain.WeatherEntity
 import com.octaneocatane.weather.domain.WeatherRepository
