@@ -54,9 +54,7 @@ class MainViewModel @Inject constructor(
     val currentLocationCoordinates: LiveData<String>
         get() = _currentLocationCoordinates
 
-    fun setDataToCurrentCard(data: WeatherEntity) {
-        //_currentWeather.value = data
-    }
+
 
     fun loadData(city: String) {
         viewModelScope.launch {
