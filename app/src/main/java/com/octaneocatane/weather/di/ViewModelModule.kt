@@ -1,7 +1,7 @@
 package com.octaneocatane.weather.di
 
 import androidx.lifecycle.ViewModel
-import com.octaneocatane.weather.presentation.MainViewModel
+import com.octaneocatane.weather.presentation.viewmodel.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

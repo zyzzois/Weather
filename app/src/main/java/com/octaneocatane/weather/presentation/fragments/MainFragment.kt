@@ -2,8 +2,8 @@ package com.octaneocatane.weather.presentation.fragments
 
 import android.Manifest
 import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,20 +14,26 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.octaneocatane.weather.R
-import com.octaneocatane.weather.app.WeatherApplication
+import com.octaneocatane.weather.app.WeatherApp
 import com.octaneocatane.weather.databinding.FragmentMainBinding
 import com.octaneocatane.weather.presentation.DialogManager
-import com.octaneocatane.weather.presentation.MainViewModel
-import com.octaneocatane.weather.presentation.ViewModelFactory
 import com.octaneocatane.weather.presentation.ViewPager2Adapter
+import com.octaneocatane.weather.presentation.viewmodel.MainViewModel
+import com.octaneocatane.weather.presentation.viewmodel.ViewModelFactory
 import com.octaneocatane.weather.utils.*
+import com.octaneocatane.weather.utils.Constants.BINDING_EXCEPTION_MESSAGE
+import com.octaneocatane.weather.utils.Constants.DAYS
+import com.octaneocatane.weather.utils.Constants.HOURS
+import com.octaneocatane.weather.utils.Constants.HTTPS
+import com.octaneocatane.weather.utils.Constants.LOADING_DATA_TEXT
+import com.octaneocatane.weather.utils.Constants.LOCATION_DISABLED_WARNING
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
 
     private val component by lazy {
-        (requireActivity().application as WeatherApplication).component
+        (requireActivity().application as WeatherApp).component
     }
 
     @Inject
@@ -57,7 +63,7 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         startShimmer()
@@ -73,15 +79,16 @@ class MainFragment : Fragment() {
 
     private fun checkLocation() {
         with(viewModel) {
-            checkNetworkConnection(requireActivity())
-            checkLocationConnection(requireActivity())
-            if (locationEnabled.value == true) {
-                showSnackbar(binding.root, LOADING_DATA_TEXT)
-                getCurrentLocation(requireContext())
-            } else {
-                showSnackbar(binding.root, LOCATION_DISABLED_WARNING)
-                showLocationSettingsDialog()
-            }
+            checkNetworkAndLocationStatus(requireActivity())
+            if (networkConnectionEnabled.value == true) {
+                if (locationEnabled.value == true) {
+                    showSnackbar(binding.root, LOADING_DATA_TEXT, resources)
+                    getCurrentLocation(requireContext())
+                } else {
+                    showSnackbar(binding.root, LOCATION_DISABLED_WARNING, resources)
+                    showLocationSettingsDialog(requireContext())
+                }
+            } else showNetworkSettingsDialog()
         }
     }
 
@@ -128,13 +135,13 @@ class MainFragment : Fragment() {
                 stopShimmer()
             }
             buttonTypeCity.setOnClickListener {
-                DialogManager.searchByNameDialog(requireContext(), object : DialogManager.Listener {
+                DialogManager.showCitySearchDialog(requireContext(), object : DialogManager.Listener {
                     override fun onClick(name: String?) {
                         name?.let {
                             viewModel.loadData(it)
                         }
                     }
-                })
+                }, resources)
             }
         }
     }
@@ -149,15 +156,12 @@ class MainFragment : Fragment() {
             viewPager2.visibility = View.INVISIBLE
             cardView.visibility = View.INVISIBLE
             shimmer.startShimmerAnimation()
-            shimmerCard.startShimmerAnimation()
         }
     }
     private fun stopShimmer() {
         with(binding) {
             shimmer.stopShimmerAnimation()
-            shimmerCard.stopShimmerAnimation()
             shimmer.visibility = View.GONE
-            shimmerCard.visibility = View.INVISIBLE
             viewPager2.visibility = View.VISIBLE
             cardView.visibility = View.VISIBLE
         }
@@ -166,14 +170,8 @@ class MainFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
     companion object {
-        private const val HOURS = "hours"
-        private const val DAYS = "days"
-        private const val HTTPS = "https:"
-        private const val BINDING_EXCEPTION_MESSAGE = "FragmentMainBinding = null"
-        private const val LOCATION_DISABLED_WARNING = "Location disabled!"
-        const val LOADING_DATA_TEXT = "Loading data..."
-        const val PERMISSION_STATUS_TEXT = "Permission is"
         @JvmStatic
         fun newInstance() = MainFragment()
     }

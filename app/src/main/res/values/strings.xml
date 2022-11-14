@@ -15,9 +15,85 @@
     <string name="alert_dialog_location_enable_location">Enable location?</string>
     <string name="alert_dialog_location_enable_network">Enable network?</string>
     <string name="alert_dialog_type_city">Enter the name of the city:</string>
+    <string name="alert_dialog_type_city_hint">enter city name</string>
     <string name="alert_dialog_location_disabled_warning">
         We cannot show you the current weather forecast while geolocation is disabled</string>
     <string name="alert_dialog_network_disabled_warning">
         We cannot show you the latest weather forecast while your internet connection is down.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="list_of_city">
+        <item>Moscow</item>
+        <item>Saint-Petersburg</item>
+        <item>Novosibirsk</item>
+        <item>Ekaterinburg</item>
+        <item>Kazan</item>
+        <item>Nizhny Novgorod</item>
+        <item>Chelyabinsk</item>
+        <item>Samara</item>
+        <item>Ufa</item>
+        <item>Rostov-on-Don</item>
+        <item>Omsk</item>
+        <item>Krasnoyarsk</item>
+        <item>Voronezh</item>
+        <item>Volgograd</item>
+        <item>Krasnodar</item>
+        <item>Tumen</item>
+        <item>Izhevsk</item>
+        <item>Barnaul</item>
+        <item>Ulyanovsk</item>
+        <item>Irkutsk</item>
+        <item>Khabarovsk</item>
+        <item>Makhachkala</item>
+        <item>Vladivostok</item>
+        <item>Yaroslavl</item>
+        <item>Orenburg</item>
+        <item>Tomsk</item>
+        <item>Novokuznetsk</item>
+        <item>Ryazan</item>
+        <item>Naberezhnie Chelni</item>
+        <item>Kirov</item>
+        <item>Sevastopol</item>
+        <item>Astrakhan</item>
+        <item>Balashiha</item>
+        <item>Kiev</item>
+        <item>London</item>
+        <item>Paris</item>
+        <item>Mexico</item>
+        <item>Minsk</item>
+        <item>Tokyo</item>
+        <item>Sochi</item>
+        <item>Saransk</item>
+        <item>Buharest</item>
+        <item>Prague</item>
+        <item>Warsaw</item>
+        <item>Pekin</item>
+        <item>Lipetsk</item>
+        <item>Kherson</item>
+        <item>Lvov</item>
+        <item>Kursk</item>
+        <item>Kharkov</item>
+        <item>Kolomna</item>
+        <item>Bryansk</item>
+        <item>Saratov</item>
+        <item>Rim</item>
+        <item>Milan</item>
+        <item>Berlin</item>
+        <item>Seul</item>
+        <item>Podolsk</item>
+        <item>Novorossiysk</item>
+        <item>Gomel</item>
+        <item>Dubai</item>
+        <item>Tashkent</item>
+        <item>Toronto</item>
+        <item>Tel-Aviv</item>
+        <item>New-York</item>
+        <item>Los-Angeles</item>
+        <item>Las-Vegas</item>
+        <item>Kair</item>
+        <item>Stambul</item>
+        <item>Baku</item>
+
+    </string-array>
+
 </resources>

@@ -1,10 +1,10 @@
-package com.octaneocatane.weather.presentation
+package com.octaneocatane.weather.presentation.viewmodel
 
 import com.octaneocatane.domain.WeatherEntity
-import com.octaneocatane.domain.usecases.GetCurrentWeatherUseCase
-import com.octaneocatane.domain.usecases.GetDaysListUseCase
-import com.octaneocatane.domain.usecases.GetHoursListUseCase
-import com.octaneocatane.domain.usecases.LoadDataUseCase
+import com.octaneocatane.domain.usecase.GetCurrentWeatherUseCase
+import com.octaneocatane.domain.usecase.GetDaysListUseCase
+import com.octaneocatane.domain.usecase.GetHoursListUseCase
+import com.octaneocatane.domain.usecase.LoadDataUseCase
 import kotlinx.coroutines.launch
 import android.Manifest
 import android.app.Activity
@@ -67,13 +67,12 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun checkLocationConnection(activity: Activity) {
-        val locationManager = activity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    fun checkNetworkAndLocationStatus(activity: Activity) {
+        val locationManager = activity.getSystemService(Context.LOCATION_SERVICE)
+                as LocationManager
+        val connectivity = activity.getSystemService(Context.CONNECTIVITY_SERVICE)
+                as ConnectivityManager
         _locationEnabled.value = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-    }
-
-    fun checkNetworkConnection(activity: Activity) {
-        val connectivity = activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         _networkConnectionEnabled.value = connectivity.activeNetworkInfo != null
                 && connectivity.activeNetworkInfo!!.state == NetworkInfo.State.CONNECTED
     }

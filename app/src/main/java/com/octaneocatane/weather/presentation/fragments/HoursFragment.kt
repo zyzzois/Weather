@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.octaneocatane.weather.app.WeatherApplication
+import com.octaneocatane.weather.app.WeatherApp
 import com.octaneocatane.weather.databinding.FragmentHoursBinding
-import com.octaneocatane.weather.presentation.MainViewModel
-import com.octaneocatane.weather.presentation.ViewModelFactory
+import com.octaneocatane.weather.presentation.viewmodel.MainViewModel
+import com.octaneocatane.weather.presentation.viewmodel.ViewModelFactory
 import com.octaneocatane.weather.presentation.recyclerview.WeatherAdapter
 import javax.inject.Inject
 
 class HoursFragment : Fragment() {
 
     private val component by lazy {
-        (requireActivity().application as WeatherApplication).component
+        (requireActivity().application as WeatherApp).component
     }
 
     @Inject

@@ -1,4 +1,4 @@
-package com.octaneocatane.weather.presentation
+package com.octaneocatane.weather.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
