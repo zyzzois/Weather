@@ -19,6 +19,5 @@
         We cannot show you the current weather forecast while geolocation is disabled</string>
     <string name="alert_dialog_network_disabled_warning">
         We cannot show you the latest weather forecast while your internet connection is down.</string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
