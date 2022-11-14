@@ -15,7 +15,7 @@ object DialogManager {
         val builder = MaterialAlertDialogBuilder(context, R.style.AlertDialogTheme)
         val dialog = builder.create()
         dialog.setCancelable(false)
-        dialog.setTitle(context.getString(R.string.alert_dialog_location_enable_question))
+        dialog.setTitle(context.getString(R.string.alert_dialog_location_enable_location))
         dialog.setMessage(context.getString(R.string.alert_dialog_location_disabled_warning))
         dialog.setButton(AlertDialog.BUTTON_POSITIVE, context.getString(
             R.string.alert_dialog_ok
@@ -24,6 +24,27 @@ object DialogManager {
             dialog.dismiss()
         }
         dialog.setIcon(R.drawable.ic_baseline_location_off_24)
+        dialog.setButton(AlertDialog.BUTTON_NEGATIVE, context.getString(
+            R.string.alert_dialog_cancel
+        )){ _,_ ->
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    fun networkSettingsDialog(context: Context, listener: Listener){
+        val builder = MaterialAlertDialogBuilder(context, R.style.AlertDialogTheme)
+        val dialog = builder.create()
+        dialog.setCancelable(false)
+        dialog.setTitle(context.getString(R.string.alert_dialog_location_enable_network))
+        dialog.setMessage(context.getString(R.string.alert_dialog_network_disabled_warning))
+        dialog.setButton(AlertDialog.BUTTON_POSITIVE, context.getString(
+            R.string.alert_dialog_ok
+        )){ _,_ ->
+            listener.onClick(null)
+            dialog.dismiss()
+        }
+        dialog.setIcon(R.drawable.ic_wifi_off)
         dialog.setButton(AlertDialog.BUTTON_NEGATIVE, context.getString(
             R.string.alert_dialog_cancel
         )){ _,_ ->
@@ -52,30 +73,6 @@ object DialogManager {
         }
         dialog.show()
     }
-
-    /*
-    fun searchCityCustomDialog(context: Context, listener: Listener){
-        val builder = MaterialAlertDialogBuilder(context, R.style.AlertDialogTheme)
-        val view = R.layout.custom_alert_dialog
-        //val constraintLayout = activity.layoutInflater.inflate(view, null)
-        builder.setView(view)
-        val dialog = builder.create()
-        dialog.setTitle("Enter the name of the city:")
-        dialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK"){ _, _ ->
-            listener.onClick(view.text.toString())
-            dialog.dismiss()
-        }
-        dialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Show map"){ _, _ ->
-            dialog.dismiss()
-        }
-        dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel"){ _, _ ->
-            dialog.dismiss()
-        }
-        dialog.show()
-    }*/
-
-
-
 
     interface Listener{
         fun onClick(name: String?)
