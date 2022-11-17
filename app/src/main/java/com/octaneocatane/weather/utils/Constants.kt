@@ -3,7 +3,7 @@ package com.octaneocatane.weather.utils
 object Constants {
     const val HOURS = "hours"
     const val DAYS = "days"
-    const val HTTPS = "https:"
+    const val BASE_URL = "https:"
     const val BINDING_EXCEPTION_MESSAGE = "FragmentMainBinding = null"
     const val LOCATION_DISABLED_WARNING = "Location disabled!"
     const val LOADING_DATA_TEXT = "Loading data..."

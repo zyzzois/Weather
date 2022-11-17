@@ -3,6 +3,7 @@ package com.octaneocatane.data.mapper
 import com.octaneocatane.data.database.modelsDB.CurrentModelDB
 import com.octaneocatane.data.network.models.WeatherInfoDto
 import com.octaneocatane.domain.WeatherEntity
+import com.octaneocatane.utils.Constants.BASE_URL
 import com.octaneocatane.utils.Constants.DAY_PATTERN
 import com.octaneocatane.utils.Constants.DEFAULT_HOUR
 import com.octaneocatane.utils.Constants.DEGREE_SYMBOL
@@ -22,7 +23,7 @@ class CurrentWeatherMapper @Inject constructor(){
         time = weatherInfoDto.current.lastUpdated,
         city = weatherInfoDto.location.city,
         conditionText = weatherInfoDto.current.condition.conditionText,
-        conditionIcon = weatherInfoDto.current.condition.conditionIcon,
+        conditionIcon = BASE_URL + weatherInfoDto.current.condition.conditionIcon,
         currentTemp = floor(weatherInfoDto.current.tempC).toInt(),
         maxTemp = ceil(weatherInfoDto.forecast.forecastForDaysList[0].day.maxTemp).toInt(),
         minTemp = weatherInfoDto.forecast.forecastForDaysList[0].day.minTemp.toInt()

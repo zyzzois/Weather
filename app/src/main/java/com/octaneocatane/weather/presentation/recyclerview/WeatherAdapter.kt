@@ -49,7 +49,7 @@ class WeatherAdapter(
                 tvTemp.text = weatherItem.currentTemp
             }
 
-            Picasso.get().load(HTTPS + weatherItem.conditionIcon).into(imHourItemCondition)
+            Picasso.get().load(weatherItem.conditionIcon).into(imHourItemCondition)
             tvCondition.text = weatherItem.conditionText
             tvDate.text = weatherItem.time
         }
@@ -57,10 +57,6 @@ class WeatherAdapter(
 
     interface Listener {
         fun obChooseDay(day: WeatherEntity)
-    }
-
-    companion object {
-        private const val HTTPS = "https:"
     }
 
 }

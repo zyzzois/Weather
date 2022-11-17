@@ -2,7 +2,6 @@ package com.octaneocatane.weather.presentation.fragments
 
 import android.Manifest
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +23,7 @@ import com.octaneocatane.weather.utils.*
 import com.octaneocatane.weather.utils.Constants.BINDING_EXCEPTION_MESSAGE
 import com.octaneocatane.weather.utils.Constants.DAYS
 import com.octaneocatane.weather.utils.Constants.HOURS
-import com.octaneocatane.weather.utils.Constants.HTTPS
+import com.octaneocatane.weather.utils.Constants.BASE_URL
 import com.octaneocatane.weather.utils.Constants.LOADING_DATA_TEXT
 import com.octaneocatane.weather.utils.Constants.LOCATION_DISABLED_WARNING
 import com.squareup.picasso.Picasso
@@ -120,7 +119,7 @@ class MainFragment : Fragment() {
                 tvCurrentCondition.text = it.conditionText
                 tvLastUpdated.text = it.time
                 tvMaxMinTemp.text = requireContext().getString(R.string.max_min_texts, it.maxTemp, it.minTemp)
-                Picasso.get().load(HTTPS + it.conditionIcon).into(imWeather)
+                Picasso.get().load(it.conditionIcon).into(imWeather)
                 stopShimmer()
             }
         }
