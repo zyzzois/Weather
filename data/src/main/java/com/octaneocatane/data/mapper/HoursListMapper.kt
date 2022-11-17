@@ -4,6 +4,7 @@ import com.octaneocatane.data.database.modelsDB.HourItemModelDB
 import com.octaneocatane.data.network.models.HourDto
 import com.octaneocatane.data.network.models.WeatherInfoDto
 import com.octaneocatane.domain.WeatherEntity
+import com.octaneocatane.utils.Constants.BASE_URL
 import com.octaneocatane.utils.Constants.DEGREE_SYMBOL
 import com.octaneocatane.utils.Constants.FULL_TIME_PATTERN
 import com.octaneocatane.utils.Constants.HOURS_MINUTES_PATTERN
@@ -28,7 +29,7 @@ class HoursListMapper @Inject constructor(){
         id = hour.idHour,
         time = hour.time,
         conditionText = hour.condition.conditionText,
-        conditionIcon = hour.condition.conditionIcon,
+        conditionIcon = BASE_URL + hour.condition.conditionIcon,
         temp = hour.tempC.toInt(),
         lastUpdatedHour = time
     )

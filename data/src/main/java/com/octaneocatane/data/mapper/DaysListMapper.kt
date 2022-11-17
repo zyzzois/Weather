@@ -4,6 +4,7 @@ import com.octaneocatane.data.database.modelsDB.DayItemModelDb
 import com.octaneocatane.data.network.models.ForecastdayDto
 import com.octaneocatane.data.network.models.WeatherInfoDto
 import com.octaneocatane.domain.WeatherEntity
+import com.octaneocatane.utils.Constants.BASE_URL
 import com.octaneocatane.utils.Constants.DAY_PATTERN
 import com.octaneocatane.utils.Constants.DEFAULT_HOUR
 import com.octaneocatane.utils.Constants.DEGREE_SYMBOL
@@ -28,7 +29,7 @@ class DaysListMapper @Inject constructor(){
         city = UNDEFINED_CITY,
         time = day.date,
         conditionText = day.day.condition.conditionText,
-        conditionIcon = day.day.condition.conditionIcon,
+        conditionIcon = BASE_URL + day.day.condition.conditionIcon,
         maxTemp = day.day.maxTemp.toInt(),
         minTemp = day.day.minTemp.toInt(),
         temp = day.day.averageTemp.toInt()
