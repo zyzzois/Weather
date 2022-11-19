@@ -7,8 +7,8 @@ import com.octaneocatane.data.mapper.CurrentWeatherMapper
 import com.octaneocatane.data.mapper.DaysListMapper
 import com.octaneocatane.data.mapper.HoursListMapper
 import com.octaneocatane.data.network.ApiService
-import com.octaneocatane.domain.WeatherEntity
-import com.octaneocatane.domain.WeatherRepository
+import com.octaneocatane.domain.entity.WeatherEntity
+import com.octaneocatane.domain.repository.WeatherRepository
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(

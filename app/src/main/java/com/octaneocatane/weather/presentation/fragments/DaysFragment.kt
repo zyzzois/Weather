@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.octaneocatane.weather.app.WeatherApp
 import com.octaneocatane.weather.databinding.FragmentDaysBinding
-import com.octaneocatane.domain.WeatherEntity
+import com.octaneocatane.domain.entity.WeatherEntity
 import com.octaneocatane.weather.presentation.viewmodel.MainViewModel
 import com.octaneocatane.weather.presentation.viewmodel.ViewModelFactory
 import com.octaneocatane.weather.presentation.recyclerview.WeatherAdapter

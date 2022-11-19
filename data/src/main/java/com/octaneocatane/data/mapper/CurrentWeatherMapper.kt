@@ -2,7 +2,7 @@ package com.octaneocatane.data.mapper
 
 import com.octaneocatane.data.database.modelsDB.CurrentModelDB
 import com.octaneocatane.data.network.models.WeatherInfoDto
-import com.octaneocatane.domain.WeatherEntity
+import com.octaneocatane.domain.entity.WeatherEntity
 import com.octaneocatane.utils.Constants.BASE_URL
 import com.octaneocatane.utils.Constants.DAY_PATTERN
 import com.octaneocatane.utils.Constants.DEFAULT_HOUR

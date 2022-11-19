@@ -8,7 +8,7 @@ import com.octaneocatane.data.database.HoursWeatherDao
 import com.octaneocatane.data.network.ApiFactory
 import com.octaneocatane.data.network.ApiService
 import com.octaneocatane.data.repository.WeatherRepositoryImpl
-import com.octaneocatane.domain.WeatherRepository
+import com.octaneocatane.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

@@ -1,4 +1,6 @@
-package com.octaneocatane.domain
+package com.octaneocatane.domain.repository
+
+import com.octaneocatane.domain.entity.WeatherEntity
 
 interface WeatherRepository {
 
