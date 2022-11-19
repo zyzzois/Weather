@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.octaneocatane.weather"
         minSdk 24
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -35,6 +35,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.octaneocatane.weather'
 }
 
 dependencies {
@@ -45,8 +46,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0.'
 
     // View
     implementation 'androidx.core:core-ktx:1.9.0'
@@ -61,7 +62,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
 
     // Coroutines
-    def coroutinesVersion = "1.5.2"
+    def coroutinesVersion = "1.6.4"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
@@ -80,17 +81,14 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     // Dagger 2
-    def dagger_version = "2.41"
+    def dagger_version = "2.42"
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0"
 
     // OkHTTP
-    def okhttpVersion = "4.9.0"
+    def okhttpVersion = "4.10.0"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-
-    // Material
-    implementation 'com.google.android.material:material:<version>'
 
     // Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'

@@ -1,6 +1,6 @@
 package com.octaneocatane.weather.presentation.viewmodel
 
-import com.octaneocatane.domain.WeatherEntity
+import com.octaneocatane.domain.entity.WeatherEntity
 import com.octaneocatane.domain.usecase.GetCurrentWeatherUseCase
 import com.octaneocatane.domain.usecase.GetDaysListUseCase
 import com.octaneocatane.domain.usecase.GetHoursListUseCase
@@ -53,8 +53,6 @@ class MainViewModel @Inject constructor(
     private val _currentLocationCoordinates = MutableLiveData<String>()
     val currentLocationCoordinates: LiveData<String>
         get() = _currentLocationCoordinates
-
-
 
     fun loadData(city: String) {
         viewModelScope.launch {

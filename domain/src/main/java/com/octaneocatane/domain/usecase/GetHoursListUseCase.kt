@@ -1,7 +1,7 @@
 package com.octaneocatane.domain.usecase
 
-import com.octaneocatane.domain.WeatherEntity
-import com.octaneocatane.domain.WeatherRepository
+import com.octaneocatane.domain.entity.WeatherEntity
+import com.octaneocatane.domain.repository.WeatherRepository
 import javax.inject.Inject
 
 class GetHoursListUseCase @Inject constructor(private val repository: WeatherRepository) {

@@ -1,4 +1,4 @@
-package com.octaneocatane.domain
+package com.octaneocatane.domain.entity
 
 data class WeatherEntity(
     val time: String,
